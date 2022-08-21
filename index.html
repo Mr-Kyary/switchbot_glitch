@@ -25,9 +25,10 @@
       function getDeviceList() {
           const res = fetch('https://api.switch-bot.com/v1.0/devices', {
             method: 'GET',
-                Authorization:'b5c9787157c59e254e96937094f4ad6ce16fd28f2a9f77596e6094d076581a60f7f4c4043b07643dce2615e348f1d639'
+                Authorization:'b5c9787157c59e254e96937094f4ad6ce16fd28f2a9f77596e6094d076581a60f7f4c4043b07643dce2615e348f1d639',
+            'Access-Control-Allow-Origin': 'https://past-hissing-bun.glitch.me/'
           });
-          console.log(res.body);
+        console.log(res);
         }
     </script>
 
