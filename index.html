@@ -21,6 +21,15 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <script>
+      function getDeviceList() {
+          const res = fetch('https://api.switch-bot.com/v1.0/devices', {
+            method: 'GET',
+                Authorization:'b5c9787157c59e254e96937094f4ad6ce16fd28f2a9f77596e6094d076581a60f7f4c4043b07643dce2615e348f1d639'
+          });
+          console.log(res.body);
+        }
+    </script>
 
     <script src="myblock.js"></script>
     <style>
@@ -41,7 +50,7 @@
     </h1>
     <label for="token">switchbot トークン</label>
     <input name="token" />
-    <input type="button" value="switchbot デモ" onclick="getDeviceLists()">
+    <input type="button" value="switchbot デモ" onclick="getDeviceList()"/>
 
     <div id="blocklyDiv" style="height: 480px; width: 600px"></div>
     <button onclick="doCode()">コードの実行</button>
@@ -50,13 +59,6 @@
       <block type="go_left"></block>
     </xml>
     <script>
-      fuction getDeviceLists() {
-        const res = fetch('https://api.switch-bot.com/v1.0/devices', {
-          Authorization: 'b5c9787157c59e254e96937094f4ad6ce16fd28f2a9f77596e6094d076581a60f7f4c4043b07643dce2615e348f1d639'
-        }
-        console.log(res.body);
-      }
-      
       var workspace = Blockly.inject("blocklyDiv", {
         toolbox: document.getElementById("toolbox"),
       });
@@ -69,8 +71,6 @@
           alert(e);
         }
       }
-      
-      
     </script>
   </body>
 </html>
