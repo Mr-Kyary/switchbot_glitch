@@ -10,6 +10,7 @@ Blockly.defineBlocksWithJsonArray([
   },
 ]);
 
+// コメントいれたよ
 Blockly.JavaScript["go_left"] = function (block) {
   var code = 'console.log("左へすすむ");\n';
   return code; /* TODO: Change toolbox XML ID if necessary. Can export toolbox XML from Workspace Factory. */
