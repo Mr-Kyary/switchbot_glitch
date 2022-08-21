@@ -22,14 +22,30 @@
       referrerpolicy="no-referrer"
     ></script>
     <script>
-      function getDeviceList() {
-          const res = fetch('https://api.switch-bot.com/v1.0/devices', {
-            method: 'GET',
-                Authorization:'b5c9787157c59e254e96937094f4ad6ce16fd28f2a9f77596e6094d076581a60f7f4c4043b07643dce2615e348f1d639',
-            'Access-Control-Allow-Origin': 'https://past-hissing-bun.glitch.me/'
-          });
-        console.log(res);
+      GetDevices() {
+    let _self = this
+    return new Promise(function(resolve, reject) {
+   
+      _self.axios({
+        method: 'GET',
+        url: 'https://api.switch-bot.com/v1.0/devices',
+        headers: {
+          'Authorization': b5c9787157c59e254e96937094f4ad6ce16fd28f2a9f77596e6094d076581a60f7f4c4043b07643dce2615e348f1d639,
         }
+      }).then((response) => {
+        let sbres = response.data
+        if (sbres.statusCode != 100) {
+          reject(new Error(sbres.message))
+        } else {
+          _self.deviceList = sbres.body.deviceList
+          _self.infraredRemoteList = sbres.body.infraredRemoteList
+          resolve(sbres.body)
+          console.log(_self.infraredRemoteList);
+        }
+      })
+    })
+    
+  }
     </script>
 
     <script src="myblock.js"></script>
@@ -51,7 +67,7 @@
     </h1>
     <label for="token">switchbot トークン</label>
     <input name="token" />
-    <input type="button" value="switchbot デモ" onclick="getDeviceList()"/>
+    <input type="button" value="switchbot デモ" onclick="GetDevices()"/>
 
     <div id="blocklyDiv" style="height: 480px; width: 600px"></div>
     <button onclick="doCode()">コードの実行</button>
